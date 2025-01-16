@@ -1,0 +1,53 @@
+<div class="container">
+    <h2>Form Builder</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="addToTable()">
+      <label for="inputName">Input Name:</label>
+      <input id="inputName" formControlName="inputName" type="text"><br><br>
+  
+      <label for="inputType">Input Type:</label>
+      <select id="inputType" formControlName="inputType">
+        <option value="text">Text</option>
+        <option value="email">Email</option>
+        <option value="radio">Radio</option>
+        <option value="checkbox">Checkbox</option>
+        <option value="dropdown">Dropdown</option>
+        <option value="file">File</option>
+        <option value="number">Number</option>
+      </select><br><br>
+  
+      <label for="inputRequired">Required:</label>
+      <input type="checkbox" id="inputRequired" formControlName="inputRequired"><br><br>
+  
+      <label for="inputLabel">Input Label:</label>
+      <input id="inputLabel" formControlName="inputLabel" type="text"><br><br>
+  
+      <button type="submit">Add Element</button><br><br>
+    </form>
+  
+    <h3>Dynamic Table</h3>
+    <table *ngIf="formElements.length > 0">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Required</th>
+          <th>Label</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of formElements">
+          <td>{{ element.name }}</td>
+          <td>{{ element.type }}</td>
+          <td>{{ element.required ? 'Yes' : 'No' }}</td>
+          <td>{{ element.label }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <button (click)="generateHTML()">Generate HTML</button>
+  
+    <h3>Generated HTML:</h3>
+    <pre>{{ generateHTML() }}</pre>
+  </div>
+  
