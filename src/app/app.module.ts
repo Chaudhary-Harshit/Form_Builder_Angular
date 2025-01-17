@@ -1,16 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';  
-import { AppComponent } from './app.component';         
-import { FormBuilderComponent } from './form-builder/form-builder.component';  
+import { RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { FormBuilderComponent } from './form-builder/form-builder.component';
+import { MarkupViewerComponent } from './markup-viewer/markup-viewer.component';
+import { routes } from './app.routes';
 
 @NgModule({
+  declarations: [
+    AppComponent,
+    FormBuilderComponent,
+    MarkupViewerComponent,
+  ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
-    AppComponent,             
-    FormBuilderComponent      
+    RouterModule.forRoot(routes),
   ],
-  bootstrap: [AppComponent],  
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

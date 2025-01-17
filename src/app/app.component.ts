@@ -1,13 +1,16 @@
+// src/app/app.component.ts
 import { Component } from '@angular/core';
-import { FormBuilderComponent } from './form-builder/form-builder.component';  
+import { RouterModule } from '@angular/router';  
 
 @Component({
   selector: 'app-root',
-  standalone: true,  
-  templateUrl: './app.component.html',
+  standalone: true,
+  template: `
+    <h1>Welcome to Form Builder</h1>
+    <router-outlet></router-outlet>  <!-- Router Outlet -->
+  `,
   styleUrls: ['./app.component.css'],
-  imports: [FormBuilderComponent]  
+  imports: [RouterModule],  
 })
 export class AppComponent {
-  title = 'Form Builder App';
 }

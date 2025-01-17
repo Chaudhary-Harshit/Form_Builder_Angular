@@ -1,51 +1,75 @@
-<h2>Form Builder</h2>
+<div class="form-builder-container">
+  <h2>Form Builder</h2>
 
-<form [formGroup]="form">
-  <label for="inputName">Input Name:</label>
-  <input id="inputName" formControlName="inputName"><br><br>
 
-  <label for="inputType">Input Type:</label>
-  <select id="inputType" formControlName="inputType">
-    <option value="text">Text</option>
-    <option value="email">Email</option>
-    <option value="radio">Radio</option>
-    <option value="checkbox">Checkbox</option>
-    <option value="dropdown">Dropdown</option>
-    <option value="file">File</option>
-    <option value="number">Number</option>
-  </select><br><br>
+  <form [formGroup]="form">
 
-  <label for="inputRequired">Required:</label>
-  <input id="inputRequired" type="checkbox" formControlName="inputRequired"><br><br>
 
-  <label for="inputLabel">Input Label:</label>
-  <input id="inputLabel" formControlName="inputLabel"><br><br>
+    <div class="input-group">
+      <label for="inputName">Field Name:</label>
+      <input type="text" id="inputName" placeholder="Enter field name" formControlName="inputName" />
+      <div *ngIf="form.get('inputName')?.invalid && form.get('inputName')?.touched" class="error-message">
+        Field Name is required.
+      </div>
+    </div>
 
-  <button type="button" (click)="addToTable()">Add Element</button>
-</form>
 
-<h3>Dynamic Table</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Required</th>
-      <th>Label</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let element of formElements">
-      <td>{{ element.name }}</td>
-      <td>{{ element.type }}</td>
-      <td>{{ element.required ? 'Yes' : 'No' }}</td>
-      <td>{{ element.label }}</td>
-    </tr>
-  </tbody>
-</table>
+    <div class="input-group">
+      <label for="inputType">Field Type:</label>
+      <select id="inputType" formControlName="inputType">
+        <option value="text">Text</option>
+        <option value="email">Email</option>
+        <option value="radio">Radio</option>
+        <option value="checkbox">Checkbox</option>
+        <option value="dropdown">Dropdown</option>
+        <option value="file">File</option>
+        <option value="number">Number</option>
+      </select>
+    </div>
 
-<button type="button" (click)="generateHTML()">Generate HTML</button>
-<button type="button" (click)="downloadHTML()">Download HTML</button>
 
-<h3>Generated HTML:</h3>
-<pre style="white-space: pre-wrap; word-wrap: break-word; max-width: 100%; overflow-x: auto;">{{ generatedHTML }}</pre>
+    <div class="input-group">
+      <label for="inputRequired">Required:</label>
+      <input type="checkbox" id="inputRequired" formControlName="inputRequired" />
+    </div>
+
+
+    <div class="input-group">
+      <label for="inputLabel">Label:</label>
+      <input type="text" id="inputLabel" placeholder="Enter field label" formControlName="inputLabel" />
+      <div *ngIf="form.get('inputLabel')?.invalid && form.get('inputLabel')?.touched" class="error-message">
+        Field Label is required.
+      </div>
+    </div>
+
+
+    <button class="add-button" (click)="addToTable()">Add to Table</button>
+
+  </form>
+
+  <h3>Form Elements</h3>
+  <table id="dynamicTable" class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Label</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let element of formElements">
+        <td>{{ element.name }}</td>
+        <td>{{ element.type }}</td>
+        <td>{{ element.required ? 'Yes' : 'No' }}</td>
+        <td>{{ element.label }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div class="button-group">
+    <button class="generate-button" (click)="navigateToViewer()">Generate HTML</button>
+    <button class="download-button" (click)="downloadHTML()">Download HTML</button>
+  </div>
+</div>
